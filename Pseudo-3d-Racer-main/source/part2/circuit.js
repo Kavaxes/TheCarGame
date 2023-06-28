@@ -81,8 +81,8 @@ class Circuit
 	createSegment(){
 		// define colors
 		const COLORS = {
-			LIGHT:	{road: '0x888888', grass: '0x429352', rumble: '0xb8312e'},
-			DARK:	{road: '0x666666', grass: '0x397d46', rumble: '0xDDDDDD', lane: '0xFFFFFF'}
+			LIGHT:	{road: '0x888888', grass: '0x429352', rumble: '#FFFF00'},
+			DARK:	{road: '0x666666', grass: '0x397d46', rumble: '#FFFF00', lane: '0xFFFFFF'}
 		};
 		
 		// get the current number of the segments
@@ -99,7 +99,13 @@ class Circuit
 			},
 			
 			// alternately color the groups of segments dark and light
-			color: Math.floor(n/this.rumble_segments)%2 ? COLORS.DARK : COLORS.LIGHT
+			color: Math.floor(n/this.rumble_segments)%2 ? COLORS.DARK : COLORS.LIGHT,
+
+			//add stop sign
+			stopSign:n%15 ===0, // add a stop sign every 15 segments
+
+			// add object to the side of the road
+			object: n % 10 === 0 ? '../assets/img_signs.png' : null, // add an object every 10 segments, replace 'object.png' with the actual object sprite/image
 		});
 	}
 	
